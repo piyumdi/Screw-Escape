@@ -74,5 +74,9 @@ public class UIManager : MonoBehaviour
         TimeFreezeUI.SetActive(false);
      }
 
+    public void ShowStartUI()
+    {
+        startUI.SetActive(true);
+    }
 
 }

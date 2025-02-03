@@ -1,52 +1,22 @@
 using UnityEngine;
 using UnityEngine.UI;
-using UnityEngine.EventSystems;
 
-public class ScrewInteraction : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler
+public class ScrewInteraction : MonoBehaviour
 {
-    private RectTransform rectTransform;
-    private CanvasGroup canvasGroup;
-    private Canvas canvas;
-    public PlankController plank;
-    public bool isLeftScrew;
-    private bool isRemoved = false;
+    public PlankController plank; // Reference to the plank
+    public bool isLeftScrew; // Check if this is the left screw
+
+    private Button button;
 
     void Start()
     {
-        rectTransform = GetComponent<RectTransform>();
-        canvasGroup = GetComponent<CanvasGroup>();
-        canvas = GetComponentInParent<Canvas>();
-    }
-
-    public void OnBeginDrag(PointerEventData eventData)
-    {
-        canvasGroup.alpha = 0.6f;
-        canvasGroup.blocksRaycasts = false;
-    }
-
-    public void OnDrag(PointerEventData eventData)
-    {
-        rectTransform.anchoredPosition += eventData.delta / canvas.scaleFactor;
-    }
-
-    public void OnEndDrag(PointerEventData eventData)
-    {
-        canvasGroup.alpha = 1f;
-        canvasGroup.blocksRaycasts = true;
-
-        if (!isRemoved)
-        {
-            RemoveScrew();
-        }
+        button = GetComponent<Button>();
+        button.onClick.AddListener(RemoveScrew);
     }
 
     void RemoveScrew()
     {
-        isRemoved = true;
-        if (plank != null)
-        {
-            plank.ScrewRemoved(isLeftScrew);
-        }
-        gameObject.SetActive(false); // Hide screw after removal
+        gameObject.SetActive(false); // Hide the screw after removal
+        plank.ScrewRemoved(isLeftScrew);
     }
 }

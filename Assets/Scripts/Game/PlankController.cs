@@ -2,95 +2,70 @@ using UnityEngine;
 
 public class PlankController : MonoBehaviour
 {
-    private int leftScrews = 0;
-    private int rightScrews = 0;
     private Rigidbody2D rb;
     private HingeJoint2D hinge;
-    private bool isPivoting = false;
+
+    private bool hasLeftScrew = true;
+    private bool hasRightScrew = true;
+
+    [SerializeField] private Transform leftScrewPos;
+    [SerializeField] private Transform rightScrewPos;
 
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-        rb.isKinematic = true; // Prevent movement initially
-
-        // Count screws
-        foreach (ScrewInteraction screw in FindObjectsOfType<ScrewInteraction>())
-        {
-            if (screw.isLeftScrew) leftScrews++;
-            else rightScrews++;
-        }
+        rb.isKinematic = true; // Keep the plank still at the start
     }
 
     public void ScrewRemoved(bool isLeftScrew)
     {
         if (isLeftScrew)
-            leftScrews--;
+            hasLeftScrew = false;
         else
-            rightScrews--;
+            hasRightScrew = false;
 
-        if ((leftScrews == 0 && rightScrews > 0) || (rightScrews == 0 && leftScrews > 0))
+        // If only one screw remains, attach hinge there
+        if (hasLeftScrew && !hasRightScrew)
         {
-            AttachHinge(); // Attach hinge to the remaining screw
+            AttachHinge(leftScrewPos.position); // Rotate around left screw
         }
-        else if (leftScrews == 0 && rightScrews == 0)
+        else if (!hasLeftScrew && hasRightScrew)
         {
-            DropPlank(); // No screws left, let it fall
+            AttachHinge(rightScrewPos.position); // Rotate around right screw
+        }
+        else if (!hasLeftScrew && !hasRightScrew)
+        {
+            DropPlank(); // No screws left → free fall
         }
     }
 
-
-    void AttachHinge()
+    void AttachHinge(Vector2 anchorPosition)
     {
-        if (isPivoting) return; // Prevent multiple hinges
-        isPivoting = true;
+        if (hinge != null) Destroy(hinge); // Remove any previous hinge
 
-        rb.isKinematic = false; // Enable physics so the plank can move
-        rb.gravityScale = 30f;   // Apply gravity for a natural swing
+        rb.isKinematic = false; // Enable physics
+        rb.gravityScale = 3f; // Apply realistic movement
 
-        // Remove any existing hinge
-        if (hinge != null) Destroy(hinge);
-
-        // Find the remaining screw position
-        Vector3 remainingScrewPosition;
-        if (leftScrews > 0)
-            remainingScrewPosition = FindScrewPosition(true); // Left screw remains
-        else if (rightScrews > 0)
-            remainingScrewPosition = FindScrewPosition(false); // Right screw remains
-        else
-            return; // No screws left, so don't add a hinge
-
-        // Create a new hinge joint
         hinge = gameObject.AddComponent<HingeJoint2D>();
         hinge.autoConfigureConnectedAnchor = false;
-        hinge.connectedBody = null; // Attach to world, not another object
 
-        // Set hinge anchor at the remaining screw's position
-        hinge.anchor = transform.InverseTransformPoint(remainingScrewPosition);
-
-        // Allow free swinging motion
-        hinge.useLimits = false;
+        // Convert world position to local space for precise attachment
+        hinge.anchor = transform.InverseTransformPoint(anchorPosition);
+        
+        // Slow down swinging effect
+        JointMotor2D motor = new JointMotor2D
+        {
+            motorSpeed = 0,
+            maxMotorTorque = 10f
+        };
+        hinge.useMotor = true;
+        hinge.motor = motor;
     }
-
 
     void DropPlank()
     {
-        if (hinge != null)
-        {
-            Destroy(hinge);
-        }
+        if (hinge != null) Destroy(hinge); // Remove hinge so it falls freely
         rb.isKinematic = false;
-        rb.gravityScale = 30f;
-    }
-
-    Vector3 FindScrewPosition(bool isLeft)
-    {
-        foreach (ScrewInteraction screw in FindObjectsOfType<ScrewInteraction>())
-        {
-            if (screw.isLeftScrew == isLeft)
-            {
-                return screw.transform.position;
-            }
-        }
-        return transform.position;
+        rb.gravityScale = 5f; // Falls freely with gravity
     }
 }
