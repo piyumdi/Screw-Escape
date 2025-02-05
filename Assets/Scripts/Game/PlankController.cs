@@ -14,7 +14,7 @@ public class PlankController : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-        rb.isKinematic = true; // Keep the plank still at the start
+        rb.isKinematic = true; // Keep plank still at the start
     }
 
     public void ScrewRemoved(bool isLeftScrew)
@@ -24,48 +24,48 @@ public class PlankController : MonoBehaviour
         else
             hasRightScrew = false;
 
-        // If only one screw remains, attach hinge there
         if (hasLeftScrew && !hasRightScrew)
         {
-            AttachHinge(leftScrewPos.position); // Rotate around left screw
+            AttachHinge(leftScrewPos);
         }
         else if (!hasLeftScrew && hasRightScrew)
         {
-            AttachHinge(rightScrewPos.position); // Rotate around right screw
+            AttachHinge(rightScrewPos);
         }
         else if (!hasLeftScrew && !hasRightScrew)
         {
-            DropPlank(); // No screws left → free fall
+            DropPlank();
         }
     }
 
-    void AttachHinge(Vector2 anchorPosition)
+    void AttachHinge(Transform screwTransform)
     {
-        if (hinge != null) Destroy(hinge); // Remove any previous hinge
+        if (hinge != null) Destroy(hinge); // Remove previous hinge
 
         rb.isKinematic = false; // Enable physics
-        rb.gravityScale = 3f; // Apply realistic movement
+        rb.gravityScale = 30f;
+
+        // Temporarily lock X position to prevent shifting
+        rb.constraints = RigidbodyConstraints2D.FreezePositionX;
 
         hinge = gameObject.AddComponent<HingeJoint2D>();
         hinge.autoConfigureConnectedAnchor = false;
 
-        // Convert world position to local space for precise attachment
-        hinge.anchor = transform.InverseTransformPoint(anchorPosition);
-        
-        // Slow down swinging effect
-        JointMotor2D motor = new JointMotor2D
-        {
-            motorSpeed = 0,
-            maxMotorTorque = 10f
-        };
-        hinge.useMotor = true;
-        hinge.motor = motor;
+        // Set correct local anchor point to avoid shifting
+        hinge.anchor = transform.InverseTransformPoint(screwTransform.position);
+
+        // Ensure hinge is correctly positioned in world space
+        hinge.connectedAnchor = screwTransform.position;
+
+        //Allow rotation & free movement after hinge is set
+        rb.constraints = RigidbodyConstraints2D.None; // Remove all constraints
     }
 
     void DropPlank()
     {
         if (hinge != null) Destroy(hinge); // Remove hinge so it falls freely
         rb.isKinematic = false;
-        rb.gravityScale = 5f; // Falls freely with gravity
+        rb.gravityScale = 30f;
+        rb.constraints = RigidbodyConstraints2D.None; // Allow free fall
     }
 }
