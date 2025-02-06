@@ -57,7 +57,8 @@ public class PlankController : MonoBehaviour
         // Ensure hinge is correctly positioned in world space
         hinge.connectedAnchor = screwTransform.position;
 
-        //Allow rotation & free movement after hinge is set
+        
+        // Allow rotation & free movement after hinge is set
         rb.constraints = RigidbodyConstraints2D.None; // Remove all constraints
     }
 
