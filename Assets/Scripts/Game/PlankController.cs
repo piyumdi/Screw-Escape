@@ -4,6 +4,8 @@ public class PlankController : MonoBehaviour
 {
     private Rigidbody2D rb;
     private HingeJoint2D hinge;
+    private BoardManager boardManager; // Reference to BoardManager
+
 
     private bool hasLeftScrew = true;
     private bool hasRightScrew = true;
@@ -11,10 +13,26 @@ public class PlankController : MonoBehaviour
     [SerializeField] private Transform leftScrewPos;
     [SerializeField] private Transform rightScrewPos;
 
+    private float fallThresholdY = -10f; // If plank falls below this, it's gone
+
+
+
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         rb.isKinematic = true; // Keep plank still at the start
+
+        boardManager = GetComponentInParent<BoardManager>(); // Get reference to the board
+
+    }
+
+    void Update()
+    {
+        if (transform.position.y < fallThresholdY)
+        {
+            boardManager.PlankRemoved();
+            Destroy(gameObject); // Remove plank from scene
+        }
     }
 
     public void ScrewRemoved(bool isLeftScrew)
