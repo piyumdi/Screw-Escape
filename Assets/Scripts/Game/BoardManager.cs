@@ -32,35 +32,32 @@ public class BoardManager : MonoBehaviour
     }
 
     void BreakBoard()
+{
+    if (brokenBoardPrefab != null)
     {
-        if (brokenBoardPrefab != null)
-        {
-            // Instantiate broken pieces at the board's position and rotation, without parenting them to the board
-            GameObject brokenPieces = Instantiate(brokenBoardPrefab, transform.position, transform.rotation);
+        GameObject brokenPieces = Instantiate(brokenBoardPrefab, transform.position, transform.rotation);
+        brokenPieces.transform.localScale = transform.localScale;
+        brokenPieces.transform.SetParent(null);
+    }
 
-            // If necessary, reset scale to match the original board's scale
-            brokenPieces.transform.localScale = transform.localScale;
+    Destroy(gameObject); // Remove the original board
 
-            // Optionally, you can move the broken pieces to a specific "scene root" to prevent accidental parenting
-            brokenPieces.transform.SetParent(null); // This ensures the pieces are independent of the board
+    // Ensure LevelManager exists before calling LoadNextLevel
+    if (LevelManager.Instance != null)
+    {
+        LevelManager.Instance.LoadNextLevel();
+    }
+    else
+    {
+        Debug.LogError("LevelManager instance is null! Make sure it's in the scene.");
+    }
+}
 
-            Debug.Log("Board broke into pieces!");
 
-            if (characterAnimation != null)
-            {
-                characterAnimation.StartJumping();  // Make the character jump!
-            }
-            else
-            {
-                Debug.LogError("CharacterAnimation is not assigned in the Inspector!");
-            }
-        }
-        else
-        {
-            Debug.LogError("brokenBoardPrefab is not assigned in the Inspector!");
-        }
-
-        Destroy(gameObject); // Remove the original board
+    IEnumerator LoadNextLevelAfterDelay(float delay)
+    {
+        yield return new WaitForSeconds(delay);
+        LevelManager.Instance.LoadNextLevel();
     }
 
 }
