@@ -32,26 +32,34 @@ public class BoardManager : MonoBehaviour
     }
 
     void BreakBoard()
-{
-    if (brokenBoardPrefab != null)
     {
-        GameObject brokenPieces = Instantiate(brokenBoardPrefab, transform.position, transform.rotation);
-        brokenPieces.transform.localScale = transform.localScale;
-        brokenPieces.transform.SetParent(null);
-    }
+        if (brokenBoardPrefab != null)
+        {
+            GameObject brokenPieces = Instantiate(brokenBoardPrefab, transform.position, transform.rotation);
+            brokenPieces.transform.localScale = transform.localScale;
+            brokenPieces.transform.SetParent(null);
 
-    Destroy(gameObject); // Remove the original board
+            Debug.Log("Board broke into pieces!");
 
-    // Ensure LevelManager exists before calling LoadNextLevel
-    if (LevelManager.Instance != null)
-    {
-        LevelManager.Instance.LoadNextLevel();
+            if (characterAnimation != null)
+            {
+                characterAnimation.StartJumping();
+            }
+            else
+            {
+                Debug.LogError("CharacterAnimation is not assigned in the Inspector!");
+            }
+        }
+        else
+        {
+            Debug.LogError("brokenBoardPrefab is not assigned in the Inspector!");
+        }
+
+        Destroy(gameObject); // Remove the original board
+
+        // Wait 3 seconds, then show the Next Level UI
+        LevelManager.Instance.LoadNextLevelUI();
     }
-    else
-    {
-        Debug.LogError("LevelManager instance is null! Make sure it's in the scene.");
-    }
-}
 
 
     IEnumerator LoadNextLevelAfterDelay(float delay)

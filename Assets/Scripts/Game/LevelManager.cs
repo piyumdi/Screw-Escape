@@ -1,52 +1,66 @@
 using UnityEngine;
-using System.Collections;
 
 public class LevelManager : MonoBehaviour
 {
-    public static LevelManager Instance; // Singleton pattern
-    [SerializeField] private GameObject[] levels; // Array of level GameObjects in the Hierarchy
-    private int currentLevelIndex = 0; // Start from Level 1
+    public static LevelManager Instance;
+
+    [SerializeField] private GameObject[] levels; // All levels in the Hierarchy (Visibility Unticked)
+    [SerializeField] private GameObject nextLevelUIPanel; // UI Panel for Next Level
+    private int currentLevelIndex = 0; // Track current level
 
     private void Awake()
     {
         if (Instance == null)
         {
             Instance = this;
+            DontDestroyOnLoad(gameObject);
         }
         else
         {
             Destroy(gameObject);
         }
+    }
 
-        // Ensure only Level 1 is active at the start
-        for (int i = 1; i < levels.Length; i++)
+    public void LoadNextLevelUI()
+    {
+        // Show the Next Level UI Panel after 3 seconds
+        Invoke("ShowNextLevelPanel", 1f);
+    }
+
+    private void ShowNextLevelPanel()
+    {
+        if (nextLevelUIPanel != null)
         {
-            levels[i].SetActive(false);
+            nextLevelUIPanel.SetActive(true);
         }
     }
 
     public void LoadNextLevel()
     {
-        if (currentLevelIndex < levels.Length - 1)
+        if (levels.Length == 0)
         {
-            StartCoroutine(ActivateNextLevelAfterDelay(3f));
+            Debug.LogError("No levels assigned in the inspector!");
+            return;
+        }
+
+        // Hide UI Panel before switching level
+        if (nextLevelUIPanel != null)
+        {
+            nextLevelUIPanel.SetActive(false);
+        }
+
+        // Hide current level and show the next one
+        levels[currentLevelIndex].SetActive(false);
+        currentLevelIndex++;
+
+        if (currentLevelIndex < levels.Length)
+        {
+            levels[currentLevelIndex].SetActive(true);
+            Debug.Log("Activated Level: " + (currentLevelIndex + 1));
         }
         else
         {
             Debug.Log("No more levels! Game Completed.");
         }
-    }
-
-    IEnumerator ActivateNextLevelAfterDelay(float delay)
-    {
-        yield return new WaitForSeconds(delay);
-
-        // Hide current level
-        levels[currentLevelIndex].SetActive(false);
-        
-        // Show next level
-        currentLevelIndex++;
-        levels[currentLevelIndex].SetActive(true);
-        Debug.Log("Level " + (currentLevelIndex + 1) + " is now visible.");
     }
 }
