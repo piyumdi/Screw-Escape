@@ -23,8 +23,8 @@ public class LevelManager : MonoBehaviour
 
     public void LoadNextLevelUI()
     {
-        // Show the Next Level UI Panel after 3 seconds
-        Invoke("ShowNextLevelPanel", 1f);
+        
+        Invoke("ShowNextLevelPanel", 5f);
     }
 
     private void ShowNextLevelPanel()
