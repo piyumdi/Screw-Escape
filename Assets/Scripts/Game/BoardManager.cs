@@ -9,6 +9,8 @@ public class BoardManager : MonoBehaviour
 
     [SerializeField] private CharacterAnimation characterAnimation;
 
+    private GameTimer gameTimer; // Reference to GameTimer
+
     void Start()
     {
         totalPlanks = transform.childCount; // Count planks attached to the board
@@ -30,9 +32,15 @@ public class BoardManager : MonoBehaviour
         yield return new WaitForSeconds(delay);
         BreakBoard();
     }
-    
+
     void BreakBoard()
     {
+        // Stop the timer since the player succeeded
+        GameTimer timer = FindObjectOfType<GameTimer>();
+        if (timer != null)
+        {
+            timer.StopTimer(); // Stop timer
+        }
         if (brokenBoardPrefab != null)
         {
             GameObject brokenPieces = Instantiate(brokenBoardPrefab, transform.position, transform.rotation);
