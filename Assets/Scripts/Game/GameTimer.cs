@@ -6,7 +6,7 @@ public class GameTimer : MonoBehaviour
 {
     public Slider timerSlider; // Assign from Inspector
     public GameObject gameOverUI; // Assign Game Over Panel
-    private float timeLeft = 4f; // Timer starts at 4 seconds
+    private float timeLeft = 8f; // Timer starts at 4 seconds
     private bool isRunning = true; 
 
     void Start()
@@ -19,7 +19,7 @@ public class GameTimer : MonoBehaviour
         if (isRunning)
         {
             timeLeft -= Time.deltaTime;
-            timerSlider.value = timeLeft / 4f; // Normalize to 0-1 range
+            timerSlider.value = timeLeft / 8f; // Normalize to 0-1 range
 
             if (timeLeft <= 0)
             {
@@ -30,7 +30,7 @@ public class GameTimer : MonoBehaviour
 
     public void ResetTimer()
     {
-        timeLeft = 4f;
+        timeLeft = 8f;
         isRunning = true;
         timerSlider.value = 1; // Full bar at start
         gameOverUI.SetActive(false); // Hide Game Over screen
