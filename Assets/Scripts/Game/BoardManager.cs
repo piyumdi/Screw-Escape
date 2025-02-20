@@ -11,9 +11,14 @@ public class BoardManager : MonoBehaviour
 
     private GameTimer gameTimer; // Reference to GameTimer
 
+    //
+    private ButtonSoundManager soundManager; // Reference to SoundManager
+    //
     void Start()
     {
         totalPlanks = transform.childCount; // Count planks attached to the board
+        soundManager = FindObjectOfType<ButtonSoundManager>(); // Find SoundManager
+   
     }
 
     public void PlankRemoved()
@@ -75,6 +80,18 @@ public class BoardManager : MonoBehaviour
 
             Debug.Log("Board broke into pieces!");
 
+
+            // Play the door breaking sound
+            if (soundManager != null)
+            {
+                soundManager.PlaySound(soundManager.doorBreakSound);
+            }
+            else
+            {
+                Debug.LogError("SoundManager not found in the scene!");
+            }
+
+            
             if (characterAnimation != null)
             {
                 characterAnimation.StartJumping();
