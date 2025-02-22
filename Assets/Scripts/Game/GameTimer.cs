@@ -4,22 +4,23 @@ using UnityEngine.SceneManagement;
 
 public class GameTimer : MonoBehaviour
 {
-    public Slider timerSlider; // Assign from Inspector
-    public GameObject gameOverUI; // Assign Game Over Panel
-    private float timeLeft = 8f; // Timer starts at 4 seconds
+    public Slider timerSlider; 
+    public GameObject gameOverUI; 
+    private float timeLeft = 8f; 
     private bool isRunning = true; 
+    private bool isTimeFrozen = false;
 
     void Start()
     {
-        ResetTimer(); // Reset at start of level
+        ResetTimer(); 
     }
 
     void Update()
     {
-        if (isRunning)
+        if (isRunning && !isTimeFrozen)
         {
             timeLeft -= Time.deltaTime;
-            timerSlider.value = timeLeft / 8f; // Normalize to 0-1 range
+            timerSlider.value = timeLeft / 8f; 
 
             if (timeLeft <= 0)
             {
@@ -32,8 +33,9 @@ public class GameTimer : MonoBehaviour
     {
         timeLeft = 8f;
         isRunning = true;
-        timerSlider.value = 1; // Full bar at start
-        gameOverUI.SetActive(false); // Hide Game Over screen
+        isTimeFrozen = false;
+        timerSlider.value = 1; 
+        gameOverUI.SetActive(false); 
     }
 
     void GameOver()
@@ -44,13 +46,17 @@ public class GameTimer : MonoBehaviour
 
     public void RetryLevel()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name); // Reloads level
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name); 
     }
 
     public void StopTimer()
     {
         isRunning = false;
-        gameOverUI.SetActive(false); // Ensure Game Over UI does not show
+        gameOverUI.SetActive(false); 
     }
 
+    public void ToggleTimeFreeze()
+    {
+        isTimeFrozen = !isTimeFrozen;
+    }
 }
