@@ -6039,6 +6039,11 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1380150106}
   m_CullTransparentMesh: 1
+--- !u!1 &1394776281 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8378274654773647956, guid: cb2d5381dd28c3c459938fc6b4735f1f, type: 3}
+  m_PrefabInstance: {fileID: 8378274655139015442}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1403197703
 GameObject:
   m_ObjectHideFlags: 0
@@ -6666,6 +6671,7 @@ GameObject:
   - component: {fileID: 1584964515}
   - component: {fileID: 1584964514}
   - component: {fileID: 1584964513}
+  - component: {fileID: 1584964516}
   m_Layer: 5
   m_Name: Ad
   m_TagString: Untagged
@@ -6736,7 +6742,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1584964514}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1584964516}
+        m_TargetAssemblyTypeName: PowerDrill, Assembly-CSharp
+        m_MethodName: UsePowerDrill
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1584964514
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6775,6 +6793,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1584964511}
   m_CullTransparentMesh: 0
+--- !u!114 &1584964516
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1584964511}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f7ff4fa11760d7042b081ce0aef16c03, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1613738630
 GameObject:
   m_ObjectHideFlags: 0
@@ -8732,6 +8762,11 @@ RectTransform:
   m_AnchoredPosition: {x: 7, y: 0}
   m_SizeDelta: {x: 1080, y: 1920}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!1 &2060863977 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8378274655394412691, guid: cb2d5381dd28c3c459938fc6b4735f1f, type: 3}
+  m_PrefabInstance: {fileID: 8378274655139015442}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &2082461721
 GameObject:
   m_ObjectHideFlags: 0
@@ -9366,6 +9401,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Level5
       objectReference: {fileID: 0}
+    - target: {fileID: 495019158178829566, guid: a0a88133005b4e44d9f3162b549f7a59, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 495019158667132792, guid: a0a88133005b4e44d9f3162b549f7a59, type: 3}
       propertyPath: screwSound
       value: 
@@ -9391,6 +9430,14 @@ PrefabInstance:
       propertyPath: screwSound
       value: 
       objectReference: {fileID: 8300000, guid: 983e9b986943e844298a881b21c4433f, type: 3}
+    - target: {fileID: 8378274654517320280, guid: cb2d5381dd28c3c459938fc6b4735f1f, type: 3}
+      propertyPath: leftScrewObject
+      value: 
+      objectReference: {fileID: 1394776281}
+    - target: {fileID: 8378274654517320280, guid: cb2d5381dd28c3c459938fc6b4735f1f, type: 3}
+      propertyPath: rightScrewObject
+      value: 
+      objectReference: {fileID: 2060863977}
     - target: {fileID: 8378274654737954133, guid: cb2d5381dd28c3c459938fc6b4735f1f, type: 3}
       propertyPath: m_Size.x
       value: 1.28
