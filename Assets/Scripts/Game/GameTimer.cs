@@ -5,9 +5,10 @@ using UnityEngine.SceneManagement;
 public class GameTimer : MonoBehaviour
 {
     public Slider timerSlider; 
-    public GameObject gameOverUI; 
-    private float timeLeft = 8f; 
-    private bool isRunning = true; 
+    public GameObject gameOverUI;
+    public GameObject gameUI; // Reference to Game UI
+    private float timeLeft = 8f;
+    private bool isRunning = false; // Start as false
     private bool isTimeFrozen = false;
 
     void Start()
@@ -17,10 +18,16 @@ public class GameTimer : MonoBehaviour
 
     void Update()
     {
+        // Start the timer only if the Game UI is active
+        if (!isRunning && gameUI.activeInHierarchy)
+        {
+            isRunning = true; 
+        }
+
         if (isRunning && !isTimeFrozen)
         {
             timeLeft -= Time.deltaTime;
-            timerSlider.value = timeLeft / 8f; 
+            timerSlider.value = timeLeft / 8f;
 
             if (timeLeft <= 0)
             {
@@ -32,10 +39,10 @@ public class GameTimer : MonoBehaviour
     public void ResetTimer()
     {
         timeLeft = 8f;
-        isRunning = true;
+        isRunning = false; // Do not start immediately
         isTimeFrozen = false;
-        timerSlider.value = 1; 
-        gameOverUI.SetActive(false); 
+        timerSlider.value = 1;
+        gameOverUI.SetActive(false);
     }
 
     void GameOver()
@@ -46,13 +53,13 @@ public class GameTimer : MonoBehaviour
 
     public void RetryLevel()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name); 
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
     public void StopTimer()
     {
         isRunning = false;
-        gameOverUI.SetActive(false); 
+        gameOverUI.SetActive(false);
     }
 
     public void ToggleTimeFreeze()
