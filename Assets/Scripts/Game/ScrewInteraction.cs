@@ -1,3 +1,4 @@
+
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -16,7 +17,7 @@ public class ScrewInteraction : MonoBehaviour
 
     void RemoveScrew()
     {
-        gameObject.SetActive(false); // Hide the screw after removal
         plank.ScrewRemoved(isLeftScrew);
+        Destroy(gameObject);  // Destroy the screw GameObject when removed
     }
 }

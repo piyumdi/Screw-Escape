@@ -1,3 +1,4 @@
+
 using UnityEngine;
 
 public class PowerDrill : MonoBehaviour
@@ -8,9 +9,11 @@ public class PowerDrill : MonoBehaviour
 
         if (planks.Length > 0)
         {
-            // Pick a random plank
-            PlankController selectedPlank = planks[Random.Range(0, planks.Length)];
-            selectedPlank.RemoveOneScrew();
+            // Remove one screw from EACH plank (one per plank)
+            foreach (PlankController plank in planks)
+            {
+                plank.RemoveOneScrew();
+            }
         }
     }
 }
