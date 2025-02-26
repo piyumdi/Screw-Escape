@@ -58,11 +58,11 @@ public class LevelManager : MonoBehaviour
             levels[currentLevelIndex].SetActive(true);
             Debug.Log("Activated Level: " + (currentLevelIndex + 1));
 
-            // Reset the timer for the new level
+            // Increase timer for the new level
             GameTimer timer = FindObjectOfType<GameTimer>();
             if (timer != null)
             {
-                timer.ResetTimer();
+                timer.IncreaseTimer(5); // Add 5 seconds each level
             }
         }
         else
@@ -70,5 +70,6 @@ public class LevelManager : MonoBehaviour
             Debug.Log("No more levels! Game Completed.");
         }
     }
+
 
 }
