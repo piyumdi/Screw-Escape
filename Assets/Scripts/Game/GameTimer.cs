@@ -7,10 +7,8 @@ public class GameTimer : MonoBehaviour
     public Slider timerSlider; 
     public GameObject gameOverUI; 
     private float timeLeft = 8f; 
-    private bool isRunning = false; 
+    private bool isRunning = true; 
     private bool isTimeFrozen = false;
-
-    public GameObject gameUIPanel;
 
     void Start()
     {
@@ -19,10 +17,6 @@ public class GameTimer : MonoBehaviour
 
     void Update()
     {
-        if (!isRunning && gameUIPanel.activeSelf)
-        {
-            isRunning = true;
-        }
         if (isRunning && !isTimeFrozen)
         {
             timeLeft -= Time.deltaTime;
@@ -38,7 +32,7 @@ public class GameTimer : MonoBehaviour
     public void ResetTimer()
     {
         timeLeft = 8f;
-        isRunning = false;
+        isRunning = true;
         isTimeFrozen = false;
         timerSlider.value = 1; 
         gameOverUI.SetActive(false); 
