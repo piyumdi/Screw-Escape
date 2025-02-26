@@ -4859,6 +4859,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1613738632}
+        m_TargetAssemblyTypeName: GameTimer, Assembly-CSharp
+        m_MethodName: OnCloseUI
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1039648356
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5687,6 +5699,18 @@ MonoBehaviour:
       - m_Target: {fileID: 42816450}
         m_TargetAssemblyTypeName: UIManager, Assembly-CSharp
         m_MethodName: HideSettingsUI
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1613738632}
+        m_TargetAssemblyTypeName: GameTimer, Assembly-CSharp
+        m_MethodName: OnCloseUI
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -7173,6 +7197,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   timerSlider: {fileID: 2041994601}
   gameOverUI: {fileID: 1749412046}
+  settingsUIPanel: {fileID: 46586578}
+  powerDrillUIPanel: {fileID: 1076991271}
+  timeFreezerUIPanel: {fileID: 272049444}
+  rustRemoverUIPanel: {fileID: 1403197703}
 --- !u!1 &1625707088
 GameObject:
   m_ObjectHideFlags: 0
@@ -7801,6 +7829,18 @@ MonoBehaviour:
       - m_Target: {fileID: 42816450}
         m_TargetAssemblyTypeName: UIManager, Assembly-CSharp
         m_MethodName: HidePowerDrillUI
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1613738632}
+        m_TargetAssemblyTypeName: GameTimer, Assembly-CSharp
+        m_MethodName: OnCloseUI
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -8592,6 +8632,18 @@ MonoBehaviour:
       - m_Target: {fileID: 42816450}
         m_TargetAssemblyTypeName: UIManager, Assembly-CSharp
         m_MethodName: HideRustRemoverUI
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1613738632}
+        m_TargetAssemblyTypeName: GameTimer, Assembly-CSharp
+        m_MethodName: OnCloseUI
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

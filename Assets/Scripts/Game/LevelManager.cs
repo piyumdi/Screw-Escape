@@ -4,9 +4,9 @@ public class LevelManager : MonoBehaviour
 {
     public static LevelManager Instance;
 
-    [SerializeField] private GameObject[] levels; // All levels in the Hierarchy (Visibility Unticked)
-    [SerializeField] private GameObject nextLevelUIPanel; // UI Panel for Next Level
-    private int currentLevelIndex = 0; // Track current level
+    [SerializeField] private GameObject[] levels; 
+    [SerializeField] private GameObject nextLevelUIPanel; 
+    private int currentLevelIndex = 0; 
 
     private void Awake()
     {
@@ -43,13 +43,13 @@ public class LevelManager : MonoBehaviour
             return;
         }
 
-        // Hide UI Panel before switching level
+        
         if (nextLevelUIPanel != null)
         {
             nextLevelUIPanel.SetActive(false);
         }
 
-        // Hide current level and show the next one
+       
         levels[currentLevelIndex].SetActive(false);
         currentLevelIndex++;
 
@@ -58,11 +58,11 @@ public class LevelManager : MonoBehaviour
             levels[currentLevelIndex].SetActive(true);
             Debug.Log("Activated Level: " + (currentLevelIndex + 1));
 
-            // Increase timer for the new level
+           
             GameTimer timer = FindObjectOfType<GameTimer>();
             if (timer != null)
             {
-                timer.IncreaseTimer(5); // Add 5 seconds each level
+                timer.IncreaseTimer(5); 
             }
         }
         else
