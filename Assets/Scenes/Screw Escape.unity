@@ -7869,6 +7869,7 @@ GameObject:
   - component: {fileID: 1628261143}
   - component: {fileID: 1628261145}
   - component: {fileID: 1628261144}
+  - component: {fileID: 1628261146}
   m_Layer: 0
   m_Name: SoundManager
   m_TagString: Untagged
@@ -7903,7 +7904,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e677b3d514ef623458d67497864e172e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  audioSource: {fileID: 1628261145}
   buttonClickSound: {fileID: 8300000, guid: 640abd5c6cb9c4d4697e08af3e4554ac, type: 3}
   doorBreakSound: {fileID: 8300000, guid: 0c9f015fd64a61943b85fb11f53a68ec, type: 3}
   buttons:
@@ -8032,6 +8032,30 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &1628261146
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1628261142}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9f31780b317e2a4499a5ea5ec96ccad2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  backgroundMusic: {fileID: 374879404}
+  soundEffectsSource: {fileID: 1628261145}
+  musicButtons:
+  - {fileID: 136800872}
+  - {fileID: 1734563589}
+  soundButtons:
+  - {fileID: 1650272891}
+  - {fileID: 1263176306}
+  soundOnIcon: {fileID: 21300000, guid: 611c151fd7be6b38dbc2ea285af69330, type: 3}
+  soundOffIcon: {fileID: 21300000, guid: 1576c3618f407c580a82ae61707e204a, type: 3}
+  musicOnIcon: {fileID: 21300000, guid: 5a74f1c7856a6c849b0aefbb4a4b2737, type: 3}
+  musicOffIcon: {fileID: 21300000, guid: 161af26c76133ea82a29b2fcd2ff3ada, type: 3}
 --- !u!1 &1644020257
 GameObject:
   m_ObjectHideFlags: 0

@@ -3,14 +3,16 @@ using UnityEngine.UI;
 
 public class ButtonSoundManager : MonoBehaviour
 {
-    public AudioSource audioSource;  // Reference to the AudioSource
-    public AudioClip buttonClickSound; // Button click sound
-    public AudioClip doorBreakSound; // Door breaking sound
-    public Button[] buttons; // Array to hold buttons
+    public AudioClip buttonClickSound;
+    public AudioClip doorBreakSound;
+    public Button[] buttons;
+
+    private SoundManager soundManager;
 
     void Start()
     {
-        // Assign click event to all buttons in the array
+        soundManager = FindObjectOfType<SoundManager>();
+
         foreach (Button btn in buttons)
         {
             btn.onClick.AddListener(() => PlaySound(buttonClickSound));
@@ -19,9 +21,9 @@ public class ButtonSoundManager : MonoBehaviour
 
     public void PlaySound(AudioClip clip)
     {
-        if (audioSource != null && clip != null)
+        if (soundManager != null)
         {
-            audioSource.PlayOneShot(clip);
+            soundManager.PlaySound(clip);
         }
     }
 }
