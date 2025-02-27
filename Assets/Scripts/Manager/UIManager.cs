@@ -11,6 +11,7 @@ public class UIManager : MonoBehaviour
     public GameObject nextLevelUI;
     public GameObject gameOverUI;
     public GameObject helpUI;
+    public GameObject helpUI2;
     public GameObject PowerDrillUI;
     public GameObject RustRemoverUI;
     public GameObject TimeFreezeUI;
@@ -27,6 +28,11 @@ public class UIManager : MonoBehaviour
         helpUI.SetActive(true);
     }
 
+    public void ShowHelpUI2()
+    {
+        helpUI.SetActive(false);
+        helpUI2.SetActive(true);
+    }
     
     public void ShowSettingsUI()
     {
@@ -38,6 +44,10 @@ public class UIManager : MonoBehaviour
         helpUI.SetActive(false);
     }
 
+    public void HideHelpUI2()
+    {
+        helpUI2.SetActive(false);
+    }
 
     public void HideSettingsUI()
     {
