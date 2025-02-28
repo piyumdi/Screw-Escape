@@ -12,7 +12,7 @@ public class GameTimer : MonoBehaviour
     public GameObject settingsUIPanel;
     public GameObject powerDrillUIPanel;
     public GameObject timeFreezerUIPanel;
-    public GameObject rustRemoverUIPanel;
+    
 
     private float timeLeft;
     private bool isRunning = true;
@@ -26,7 +26,7 @@ public class GameTimer : MonoBehaviour
 
     void Update()
     {
-        if (settingsUIPanel.activeSelf || powerDrillUIPanel.activeSelf || timeFreezerUIPanel.activeSelf || rustRemoverUIPanel.activeSelf)
+        if (settingsUIPanel.activeSelf || powerDrillUIPanel.activeSelf || timeFreezerUIPanel.activeSelf)
         {
             PauseTimer();
         }

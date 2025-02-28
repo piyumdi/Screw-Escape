@@ -14,7 +14,6 @@ public class UIManager : MonoBehaviour
     public GameObject helpUI;
     public GameObject helpUI2;
     public GameObject PowerDrillUI;
-    public GameObject RustRemoverUI;
     public GameObject TimeFreezeUI;
 
 
@@ -60,11 +59,6 @@ public class UIManager : MonoBehaviour
         PowerDrillUI.SetActive(true);
     }
 
-    public void ShowRustRemoverUI()
-    {
-        RustRemoverUI.SetActive(true);
-    }
-
     public void ShowTimeFreezeUI()
     {
         TimeFreezeUI.SetActive(true);
@@ -73,11 +67,6 @@ public class UIManager : MonoBehaviour
     public void HidePowerDrillUI()
     {
         PowerDrillUI.SetActive(false);
-    }
-
-    public void HideRustRemoverUI()
-    {
-        RustRemoverUI.SetActive(false);
     }
 
     public void HideTimeFreezeUI()
