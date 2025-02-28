@@ -5,6 +5,8 @@ using UnityEngine;
 
 public class UIManager : MonoBehaviour
 {
+    private bool isPaused = false;
+
     [Header("UI Panels")]
     public GameObject startUI;
     public GameObject gameUI;
@@ -17,6 +19,19 @@ public class UIManager : MonoBehaviour
     public GameObject TimeFreezeUI;
 
 
+    public void TogglePause()
+    {
+        if (isPaused)
+        {
+            Time.timeScale = 1f;  // Resume game
+            isPaused = false;
+        }
+        else
+        {
+            Time.timeScale = 0f;  // Pause game
+            isPaused = true;
+        }
+    }
 
     public void ShowgameUI()
     {
