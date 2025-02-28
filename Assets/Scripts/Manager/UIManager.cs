@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.SceneManagement;
 using UnityEngine;
 
 public class UIManager : MonoBehaviour
@@ -87,6 +88,11 @@ public class UIManager : MonoBehaviour
     public void ShowStartUI()
     {
         startUI.SetActive(true);
+        gameUI.SetActive(false);
+        gameOverUI.SetActive(false);
+        nextLevelUI.SetActive(false);
+        settingsUI.SetActive(false);
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 
 }
