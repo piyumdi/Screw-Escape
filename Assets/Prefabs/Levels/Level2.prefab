@@ -611,6 +611,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   leftScrewPos: {fileID: 6505132924231919383}
   rightScrewPos: {fileID: 6505132923704280106}
+  leftScrewObject: {fileID: 6505132924231919382}
+  rightScrewObject: {fileID: 6505132923704280105}
 --- !u!1 &6505132923990696376
 GameObject:
   m_ObjectHideFlags: 0
@@ -1678,6 +1680,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   leftScrewPos: {fileID: 6505132924018906149}
   rightScrewPos: {fileID: 6505132925066012184}
+  leftScrewObject: {fileID: 6505132924018906148}
+  rightScrewObject: {fileID: 6505132925066012191}
 --- !u!1 &6505132925014176004
 GameObject:
   m_ObjectHideFlags: 0

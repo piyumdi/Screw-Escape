@@ -1256,6 +1256,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   leftScrewPos: {fileID: 3701834367123755657}
   rightScrewPos: {fileID: 3701834366077110860}
+  leftScrewObject: {fileID: 3701834367123755658}
+  rightScrewObject: {fileID: 3701834366077110861}
 --- !u!1 &3701834366403387931
 GameObject:
   m_ObjectHideFlags: 0
@@ -1411,6 +1413,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   leftScrewPos: {fileID: 3701834365955883744}
   rightScrewPos: {fileID: 3701834366951872991}
+  leftScrewObject: {fileID: 3701834365955883745}
+  rightScrewObject: {fileID: 3701834366951872544}
 --- !u!1 &3701834366623744299
 GameObject:
   m_ObjectHideFlags: 0
@@ -1526,6 +1530,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   leftScrewPos: {fileID: 3701834366182445292}
   rightScrewPos: {fileID: 3701834365765422063}
+  leftScrewObject: {fileID: 3701834366182445293}
+  rightScrewObject: {fileID: 3701834365765422064}
 --- !u!1 &3701834366702763788
 GameObject:
   m_ObjectHideFlags: 0
@@ -2632,6 +2638,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   leftScrewPos: {fileID: 3701834366018351001}
   rightScrewPos: {fileID: 3701834365691595576}
+  leftScrewObject: {fileID: 3701834366018351002}
+  rightScrewObject: {fileID: 3701834365691595577}
 --- !u!1 &3873586365150573040
 GameObject:
   m_ObjectHideFlags: 0
@@ -3019,6 +3027,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   leftScrewPos: {fileID: 2551038990492441099}
   rightScrewPos: {fileID: 5033630972896063014}
+  leftScrewObject: {fileID: 3873586365150573040}
+  rightScrewObject: {fileID: 7335000241468760116}
 --- !u!1 &4992792887132091656
 GameObject:
   m_ObjectHideFlags: 0
@@ -3406,3 +3416,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   leftScrewPos: {fileID: 7488454601575069664}
   rightScrewPos: {fileID: 6282149597643454189}
+  leftScrewObject: {fileID: 4992792887132091656}
+  rightScrewObject: {fileID: 4473853669545519988}
