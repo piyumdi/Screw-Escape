@@ -17,6 +17,7 @@ public class UIManager : MonoBehaviour
     public GameObject helpUI2;
     public GameObject PowerDrillUI;
     public GameObject TimeFreezeUI;
+    public GameObject LevelsUI;
 
 
     public void TogglePause()
@@ -31,6 +32,16 @@ public class UIManager : MonoBehaviour
             Time.timeScale = 0f;  // Pause game
             isPaused = true;
         }
+    }
+
+    public void ShowLevelsUI()
+    {
+        LevelsUI.SetActive(true);
+    }
+
+    public void HideLevelsUI()
+    {
+        LevelsUI.SetActive(false);
     }
 
     public void ShowgameUI()
